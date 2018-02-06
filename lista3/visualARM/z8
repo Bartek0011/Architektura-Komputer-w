@@ -1,0 +1,21 @@
+		mov		r0, #84
+		mov		r1, #18
+loop		cmp		r0, r1
+		subgt	r0, r0, r1
+		cmp		r1, r0
+		subgt	r1, r1, r0
+		cmp		r1, r0
+		beq		theend
+		b		loop
+		
+		
+theend	end
+		
+		;loop	subs		r2, r1, r0
+		;		bhi		loop
+		
+		;theend	end
+		;teq		r0, r1
+		;cmp		r0, r1
+		;again	subs		r1, r1, r0
+		;		bne		again
