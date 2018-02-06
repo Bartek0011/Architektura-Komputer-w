@@ -1,5 +1,0 @@
-
-root gcc zad1.c -o zad1
-chowd
-chmod u+x nazwa
-chmod 4001 

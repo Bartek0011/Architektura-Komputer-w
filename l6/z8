@@ -10,12 +10,3 @@ loop		cmp		r0, r1
 		
 		
 theend	end
-		
-		;loop	subs		r2, r1, r0
-		;		bhi		loop
-		
-		;theend	end
-		;teq		r0, r1
-		;cmp		r0, r1
-		;again	subs		r1, r1, r0
-		;		bne		again

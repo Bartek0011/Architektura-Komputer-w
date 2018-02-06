@@ -1,0 +1,81 @@
+	ORG $1000
+
+START	EQU *
+	LDA <TEXT
+	STA $80
+	LDA >TEXT
+	STA $81
+	LDA #$FF
+	JSR BCD
+	JSR TRANS
+
+	LDA <TEXT
+	LDX >TEXT
+	JSR $FF80
+	BRK
+
+BCD	STA BYTE
+	LDA #0
+	STA WORD
+	STA WORD+1
+	LDX #8
+	SED
+CV1	ASL BYTE
+	LDA WORD
+	ADC WORD
+	STA WORD
+	ROL WORD+1
+	DEX
+	BNE CV1
+	RTS
+
+TRANS	LDA WORD
+	LDY #3
+	AND #%00001111
+	CLC
+	ADC #'0'
+	STA ($80),Y
+	DEY
+	LDA WORD
+	LSR @
+	LSR @
+	LSR @
+	LSR @
+	AND #%00001111
+        CLC
+        ADC #'0'
+	STA ($80),Y
+
+	LDA WORD+1
+        AND #%00001111
+	CLC
+	ADC #'0'
+	DEY
+        STA ($80),Y
+        DEY
+        LDA WORD+1
+        LSR @
+        LSR @
+        LSR @
+        LSR @
+        AND #%00001111
+        CLC
+        ADC #'0'
+        STA ($80),Y
+
+	RTS
+
+
+BYTE	DTA B(0)
+	ORG $2000
+
+WORD	DTA B(0)
+	ORG $3000
+
+TEXT	EQU *
+	DTA B(0),B(0),B(0),B(0)
+	DTA B(10)
+	DTA B(0)
+
+	ORG $2E0
+	DTA A(START)

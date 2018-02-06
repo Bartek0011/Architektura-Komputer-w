@@ -1,0 +1,17 @@
+dd if=/dev/zero of=vfat.img bs=1024 count=100
+mkfs.vfat vfat.img
+mkdir fs
+sudo mount vfat.img fs
+
+cd fs
+echo "hej" > plik1
+cd ..
+
+hexdump -C vfat.img
+
+Partycja systemu FAT składa się z 4 regionów:
+
+    zarezerwowany (z boot sectorem) – a w nim tablica BPB (Bios Parameter Block) oraz program ładujący system operacyjny (boot loader) dla partycji systemowej. Blok BPB zawiera informacje potrzebne do wyliczenia położenia i rozmiaru pozostałych regionów.
+    tablica alokacji (tablica FAT) – przechowywana zaraz za boot sektorem struktura, zajmująca kilka sektorów, która zawiera informacje dla systemu operacyjnego na temat klastrów. Każda pozycja w tablicy FAT odpowiada jednemu klastrowi. Sposób kodowania informacji opisano wyżej. Na partycji może być kilka kopii tablicy FAT, zazwyczaj dwie.
+    katalog główny (w FAT32 nie istnieje w tej formie) – katalog główny (root directory) i jego podkatalogi zawierają nazwę pliku, atrybuty, informacje o czasie utworzenie i modyfikacji, wskaźnik na pierwszy klaster z danymi.
+    region danych – zajmowany przez podkatalogi i wszystkie pliki; podzielony na logiczne bloki zwane klastrami.

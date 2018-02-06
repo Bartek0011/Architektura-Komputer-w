@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 6)
 	{
+		//printf("usage: %s <szerokosc|wysokość macierzy> <liczba wątków>", argv[0]);
 		printf("usage: %s <szerokosc 1 macierzy> <wysokosc 1 macierzy> <szerokosc 2 macierzy> <wysokosc 2 macierzy> <liczba wątków>", argv[0]);
 		exit(1);
 	}

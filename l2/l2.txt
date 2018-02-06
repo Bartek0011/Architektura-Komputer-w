@@ -1,0 +1,29 @@
+1.	ps -le | grep tty
+
+2.	-Wall 	błędy konstrukcyjne (-Wall "warning all")
+	-pedantic	 nizgodne z ISO
+
+3.	tree /lib | sort | grep 1
+	ps -u
+
+4.	mkfifo FIFO
+	cat > FIFO
+	cat < FIFO
+
+5.	#include<stdio.h>
+
+int main(int argc, char *argv[])
+{
+	
+	for(int i=0; i<=256; i++){
+		printf("\033[38;5;%dmHello World\n\033[0m", i);
+	}
+	return 0;
+}
+
+6.	
+#!/bin/bash
+for x in *
+do 
+	mv "$x" "$( echo $x | tr A-Z a-z)"
+done
